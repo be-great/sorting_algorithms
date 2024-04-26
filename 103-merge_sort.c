@@ -15,36 +15,68 @@ void swap(int *a, int *b)
 
 }
 /**
-* partition - partition the tree
+* merge - partition the tree
 * @arr: the array
 * @low: the low partition
+* @middem: the middem
 * @high: the high partition
 * @size: the size of the orignal array
+* @description: 1- create arrayleft, arrayright
+*               2- copy data to temp array left and right
+*               3- merge left to the orignal array
+*               4- merge right to the orignal array
 * Return: the partition return
 */
-int partition(int *arr, int low, int high, int size)
+int merge(int *arr, int low, int middem, int high, int size)
 {
-	/** you want to but the pivot position in 'i' + 1*/
-	/* meaning :  i < pivot < i + 2*/
-	int pivot, i, j;
+    int i, j, k;
+    int lenleft, lenright;
+    int *arrl, *arrr;
 
-	pivot = arr[high]; /* the last element*/
-	i = low - 1;
-	for (j = low; j <= high; j++) /* test it with j < high*/
-	{
-		if (arr[j] < pivot)
-		{
-			i++;
-			swap(&arr[i], &arr[j]);
-			if (arr[i] != arr[j])
-				print_array(arr, size);
-		}
-	}
-	/* now swap the pivot*/
-	swap(&arr[i + 1], &arr[high]);
-	if (arr[i + 1] != arr[high])
-		print_array(arr, size);
-	return (i + 1);
+    lenleft = middem - low + 1;
+    lenright = high - middem;
+    arrl = malloc(sizeof(int) *lenleft);
+    arrr = malloc(sizeof(int) *lenright);
+
+    for (i = 0; i < lenleft; i++)
+        arrl[i] = arr[low + i];
+    for (j = 0; j < lenright; j++)
+        arrr[j] = arr[middem + 1+ j];
+    
+    i = 0;
+    j = 0;
+    k = low;
+    /*merge the left side*/
+    while (i < lenleft && j < lenright)
+    {
+        if (arrl[i] >= arrr[j])
+        {
+            arr[k] = arrr[j];
+            j++;
+        }
+        else
+        {
+          arr[k] = arrl[i];
+          i++;
+        }
+        k++;
+    }
+    /*merge the left side*/
+    while (i < lenleft)
+    {
+        arr[k] = arrl[i];
+        i++;
+    }
+
+    /*merge the right side*/
+    while (j < lenright)
+    {
+        arr[k] = arrr[j];
+        j++;
+    }
+
+
+
 
 }
 /**
@@ -58,11 +90,12 @@ void tree(int arr[], int low, int high, int size)
 {
 	if (low < high)
 	{
-		int pi;
+		int middem = low + (high - low)/ 2;
 
-		pi = partition(arr, low, high, size);
-		tree(arr, low, pi - 1, size);
-		tree(arr, pi + 1, high, size);
+
+		tree(arr, low, middem,size);
+		tree(arr, middem + 1, high, size);
+        merge(arr, low, middem, high, size);
 	}
 }
 /**
