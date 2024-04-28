@@ -8,12 +8,12 @@
 ## 📂 Files : 
 |File|Description|
 |---|---|
-|0-bubble_sort, 0-O| comparison-based Sorting algorithm is the simplest sorting algorithm|
+|0-bubble_sort, 0-O| comparison-based Sorting algorithm is the simplest sorting algorithm for short lists and is stable|
 |||
 |||
-|3-quick_sort, 3-O| comparison-based Sorting algorithm for sorting large datasets|
+|3-quick_sort, 3-O| comparison-based Sorting algorithm for sorting large datasets or linked lists not for short but it's not stable like mergesort|
 |||
 |||
 |||
-|||
+|103-merge_sort, 103-O| comparison-based Sorting algorithm for sorting large lists, linked lists, large datasets not for small ones and it's stable|
 |||
