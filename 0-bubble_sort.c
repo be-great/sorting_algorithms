@@ -23,6 +23,8 @@ void bubble_sort(int *array, size_t size)
 {
 	size_t i, j;
 
+	if (size < 2)
+		return;
 	for (i = 0; i < size; i++)
 	{
 		/* min 1 => becasue of the compare with the (j + 1) */
