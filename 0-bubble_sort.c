@@ -23,13 +23,11 @@ void bubble_sort(int *array, size_t size)
 {
 	size_t i, j;
 
-	if (size < 2)
+	if (array ==  NULL)
 		return;
-	for (i = 0; i < size; i++)
+	for (i = size; i > 0; i--)
 	{
-		/* min 1 => becasue of the compare with the (j + 1) */
-		/* min i => each interation will sort the right number of the list */
-		for (j = 0; j < size - i - 1; j++)
+		for (j = 0; j < size - 1; j++)
 		{
 			if (array[j] > array[j + 1])
 			{
