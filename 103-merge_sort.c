@@ -139,4 +139,5 @@ void merge_sort(int *array, size_t size)
 		return;
 	array_locate_left_right = _calloc(size, sizeof(int));
 	tree(array, 0, size - 1, array_locate_left_right);
+	free(array_locate_left_right);
 }
