@@ -56,7 +56,7 @@ void counting_sort(int *array, size_t size)
 	/*sum with privous values*/
 	for (i = 1; i < len; i++)
 		count[i] += count[i - 1];
-	print_array(array, len);
+	print_array(count, len);
 	/* calcualte the output the right position*/
 	for (i = 0; i < size; i++)
 	{
