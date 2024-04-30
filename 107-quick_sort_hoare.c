@@ -24,31 +24,34 @@ void swap(int *a, int *b)
 */
 int partition(int *arr, int low, int high, int size)
 {
-	/** you want to but the pivot position in 'i' + 1*/
-	/* meaning :  i < pivot < i + 2*/
+
+
 	int pivot, i, j;
 
-	pivot = arr[low]; /* the first element*/
-	i = low - 1; /*init left index*/
-	j = high + 1;   /*init right index*/
+	i = low - 1;
+	j = high + 1;
 
-	while (1)
+
+	pivot = arr[high];
+	while (i < j)
 	{
-		/* find in the left side a element greater than the pivot*/
 		do {
 			i++;
 		} while (arr[i] < pivot);
-		/* find in the right side a element small than the pivot*/
 		do {
 			j--;
 		} while (arr[j] > pivot);
-		if (i >= j)
-			return (j);
-		swap(&arr[i], &arr[j]);
-		print_array(arr, size);
+
+		if (i < j)
+		{
+			swap(&arr[i], &arr[j]);
+			print_array(arr, size);
+		}
 	}
 
+	return (i);
 }
+
 /**
 * tree - divide and conquer
 * @arr: the array
@@ -58,13 +61,13 @@ int partition(int *arr, int low, int high, int size)
 */
 void tree(int arr[], int low, int high, int size)
 {
-	if (low < high)
-	{
-		int pi;
+	int pi;
 
+	if (high - low > 0)
+	{
 		pi = partition(arr, low, high, size);
 		tree(arr, low, pi - 1, size);
-		tree(arr, pi + 1, high, size);
+		tree(arr, pi, high, size);
 	}
 }
 /**
