@@ -32,7 +32,7 @@ int partition(int *arr, int low, int high, int size)
 	i = low; /*init left index*/
 	j = high;   /*init right index*/
 
-	while (1)
+	while (i < j)
 	{
 		/* find in the left side a element greater than the pivot*/
 		while (arr[i] < pivot)
@@ -44,11 +44,15 @@ int partition(int *arr, int low, int high, int size)
 		{
 			j--;
 		}
-		if (i >= j)
-			return (j);
-		swap(&arr[i], &arr[j]);
-		print_array(arr, size);
+		if (i < j)
+		{
+			swap(&arr[i], &arr[j]);
+		    print_array(arr, size);
+			i++;
+			j--;
+		}
 	}
+	return (j);
 
 }
 /**
