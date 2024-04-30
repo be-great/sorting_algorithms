@@ -28,31 +28,25 @@ int partition(int *arr, int low, int high, int size)
 	/* meaning :  i < pivot < i + 2*/
 	int pivot, i, j;
 
-	pivot = arr[high]; /* the last element*/
-	i = low; /*init left index*/
-	j = high;   /*init right index*/
+	pivot = arr[low]; /* the first element*/
+	i = low - 1; /*init left index*/
+	j = high + 1;   /*init right index*/
 
-	while (i < j)
+	while (1)
 	{
 		/* find in the left side a element greater than the pivot*/
-		while (arr[i] < pivot)
-		{
+		do {
 			i++;
-		}
+		} while (arr[i] < pivot);
 		/* find in the right side a element small than the pivot*/
-		while (arr[j] > pivot)
-		{
+		do {
 			j--;
-		}
-		if (i < j)
-		{
-			swap(&arr[i], &arr[j]);
-		    print_array(arr, size);
-			i++;
-			j--;
-		}
+		} while (arr[j] > pivot);
+		if (i >= j)
+			return (j);
+		swap(&arr[i], &arr[j]);
+		print_array(arr, size);
 	}
-	return (j);
 
 }
 /**
