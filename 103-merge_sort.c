@@ -51,17 +51,16 @@ void swap(int *a, int *b)
 * @low: the low partition
 * @middem: the middem
 * @high: the high partition
-* @size: the size of the orignal array
-* @description: 1- create arrayleft, arrayright
 * @array_locate_left_right: they new array to locate
+* description: 1- create arrayleft, arrayright
 *               2- copy data to temp array left and right
 *               3- merge left to the orignal array
 *               4- merge right to the orignal array
 * Return: the partition return
 */
-int merge(int *arr, int low, int middem, int high,
+void merge(int *arr, int low, int middem, int high,
 
-	    int *array_locate_left_right)
+		int *array_locate_left_right)
 {
 	int i, j, k;
 
@@ -106,7 +105,6 @@ int merge(int *arr, int low, int middem, int high,
 * @arr: the array
 * @low: the low partition
 * @high: the high partition
-* @size: the size the array
 * @array_locate_left_right: they new array to locate
 */
 void tree(int arr[], int low, int high,
@@ -141,4 +139,5 @@ void merge_sort(int *array, size_t size)
 		return;
 	array_locate_left_right = _calloc(size, sizeof(int));
 	tree(array, 0, size - 1, array_locate_left_right);
+	free(array_locate_left_right);
 }
